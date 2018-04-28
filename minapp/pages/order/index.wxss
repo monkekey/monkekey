@@ -1,0 +1,17 @@
+/* pages/order/index.wxss */
+page{
+  background-color: #f3f0f0
+}
+
+.tag{
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right:2rpx solid #bfbfbf;
+  height: 30rpx;
+}
+
+.tagClick{
+  color: red;
+}

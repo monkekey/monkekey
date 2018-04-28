@@ -1,0 +1,7 @@
+.pice{
+  width: 200rpx;
+  /* height: 90rpx; */
+  background-color: #FFF;
+  border: 2rpx solid #FFA000;
+  color: #FFA000;
+}

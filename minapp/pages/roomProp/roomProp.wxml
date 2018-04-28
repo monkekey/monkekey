@@ -1,0 +1,12 @@
+<!--pages/roomProp/roomProp.wxml-->
+<view class="service-tags-container">
+    <view style="margin-top:30rpx">
+        <text class="service-tags-title">便利设施</text>
+        <view class="service-tags-list" style='font-size:28rpx;'>
+            <view class="layout-flex row service-tags-item display-flex" wx:for="{{proplist}}" data-item='{{item}}' wx:key="{{index}}">
+                <view style="flex:1">{{item.propertyName}}</view>
+                <image src="{{globalData.imgUrl}}{{item.url}}" class="icon"></image>
+            </view>
+        </view>
+    </view>
+</view>

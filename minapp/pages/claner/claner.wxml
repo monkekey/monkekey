@@ -1,0 +1,47 @@
+<!--pages/claner/claner.wxml-->
+<view class="" style='margin-top:0px;'>
+  <view class="zan-cell" style='padding-top:8px;'>
+    <view class="zan-cell__bd" style='font-size:46rpx;' bindtap='back'>×</view>
+    <view class="zan-cell__ft" style='color:#383838' bindtap='clean'>清除</view>
+  </view>
+</view>
+<view class='display-flex justify-space time-select'>
+  <view class=''>
+    <!-- <view>开始日期</view> -->
+    <view>{{curBigenDate}}</view>
+  </view>
+  <view>
+    <view wx:if="{{!curEndDate}}">结束日期</view>
+    <view>{{curEndDate}}</view>
+  </view>
+</view>
+<view class="flex box box-tb box-align-center">
+  <view class="calendar pink-color box box-tb">
+        <view class="top-handle fs28 box box-lr box-align-center box-pack-center">
+            <view class="prev box box-rl" bindtap="handleCalendar" data-handle="prev">
+                <view class="prev-handle box box-lr box-align-center box-pack-center {{curMonth < cur_month?'':'color-d'}}">《</view>
+            </view>
+            <view class="date-area box box-lr box-align-center box-pack-center">{{cur_year || "--"}} 年 {{cur_month || "--"}} 月</view>
+            <view class="next box box-lr" bindtap="handleCalendar" data-handle="next">
+                <view class="next-handle box box-lr box-align-center box-pack-center">》</view>
+            </view>
+        </view>
+        <view class="weeks box box-lr box-pack-center box-align-center">
+            <view class="flex week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+        </view>
+        <view class="days box box-lr box-wrap">
+            <view wx:if="{{hasEmptyGrid}}" class="grid white-color box box-align-center box-pack-center" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+            </view>
+            <view class="grid white-color box box-align-center box-pack-center" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}" data-item="{{item}}" catchtap='changeDate'>
+                <view class="day {{curMonth==cur_month? ( (index+1) ==today? (endTime ? 'left-radius begin':'pink-bg begin'): ((index+1) < today ? 'color-d' :'' )) : ''}} {{item.selected ? 'bgcolor-blue begin-end':''}} {{item.endTime?'end right-radius':''}} box box-align-center box-pack-center">{{item.day}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class='global-btn-block'>
+  <button class='bgcolor-blue'>保存</button>
+</view> -->
+<view style='border-top:1px solid #ddd;'></view>
+<view class="zan-btns">
+  <button class="zan-btn bgcolor-blue" style='color:#fff'  bindtap="onBill">确认</button>
+</view>

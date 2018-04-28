@@ -1,0 +1,27 @@
+<view style='flex-direction:column;'>
+
+  <view style='text-align: center;margin-top:130rpx'>
+    <view>
+      <image style="width: 160rpx;height:160rpx;border-radius:50%" src="{{imageUrl}}" />
+    </view>
+    <view style="font-size: 30rpx;color: #A8A8A8;padding-left: 20rpx;padding-top: 10rpx;border-bottom:2rpx solid #F3F3F3;padding-bottom:15rpx;">“{{userName}}表现不错，我要赞赏鼓励”</view>
+  </view>
+
+  <view style="margin:20rpx 20rpx;border-radius:10rpx">
+    <view style='text-align: center;font-size: 25rpx;color: #a8a8a8;'>赞赏金额</view>
+    <view style='display:flex; padding-top:30rpx'>
+      <button id="priceOne" data-price='1' class='pice' bindtap="operationPrice">1元</button>
+      <button id="priceTwo" data-price='2' class='pice' bindtap="operationPrice">2元</button>
+      <button id="priceFive" data-price='5' class='pice' bindtap="operationPrice">5元</button>
+    </view>
+    <view style='display:flex;margin-top:30rpx;padding-bottom:20rpx'>
+      <button id="priceTen" data-price='10' class="pice" bindtap="operationPrice">10元</button>
+      <button id="priceTwenty" data-price='20' class="pice" bindtap="operationPrice">20元</button>
+      <button id="priceFifty" data-price='50' class="pice" bindtap="operationPrice">50元</button>
+    </view>
+  </view> 
+  
+  <view style='text-align: center;margin-top: 400rpx;'>
+    <view style='font-size: 25rpx;color: #a8a8a8;'>收到{{count}}次赞赏</view>
+  </view>
+</view>

@@ -1,0 +1,104 @@
+server:
+  port: 9080
+  tomcat:
+    uri-encoding: UTF-8
+  context-path: /yumi_bee
+
+spring:
+  http:
+    multipart:
+      max-file-size: 10MB
+  profiles:
+    active: @profiles.active@
+#    active: ${ENV_ACTIVE}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        jdbc:
+          batch_size: 20
+        batch_versioned_data: true
+  redis:
+    database: 0
+    host: localhost
+    port: 6379 #6379
+    password:      # 密码（默认为空）
+    timeout: 6000  # 连接超时时长（毫秒）
+    pool:
+      max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 10      # 连接池中的最大空闲连接
+      min-idle: 5       # 连接池中的最小空闲连接
+
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
+
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.security: INFO
+
+swagger:
+  show: true
+
+# JWT
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 10800
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
+
+bizcode:
+    datacenterId: 1
+    machineId: ${ENV_MACHINE_ID:1}
+
+oss:
+  key: 9RRCeuPpUVBkqfy0
+  secret: WX2bccmcdDN4J31MkOcPTvfoPdeAJA
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  bucket: souzhu-platform
+
+aliyun:
+  appcode: 8ad7520273e54ce395d2fca18a4901f8
+
+ossCommodityImg:
+  key: 9RRCeuPpUVBkqfy0
+  secret: WX2bccmcdDN4J31MkOcPTvfoPdeAJA
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  bucket: yumi-bee
+
+yumi:
+  redis:
+    open: false  # 是否开启redis缓存  true开启   false关闭
+  shiro:
+    redis: false # true表示shiro session存到redis里，需要开启redis，才会生效【分布式场景】

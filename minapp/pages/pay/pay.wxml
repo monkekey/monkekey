@@ -1,0 +1,20 @@
+<view style='flex-direction:column;'>
+
+  <view style='text-align: center;margin-top:130rpx'>
+    <view>
+      <image style="width: 160rpx;height:160rpx;border-radius:50%" src="{{imgUrl}}" />
+    </view>
+    <view style="font-size: 30rpx;padding-left: 20rpx;padding-top: 10rpx;padding-bottom:15rpx;">“给{{userName}}赞赏”</view>
+  </view>
+  <view style='text-align: center;'>￥{{price}}</view>
+  <view style='margin-top:20rpx;margin-left: 24rpx;'>
+     <textarea 
+      style='border: 1px solid #FFF;wxcs_style_border: 2rpx solid #FFF;width: 700rpx;height: 150rpx;background-color: #FFF;padding-left:8rpx;font-size:30rpx' 
+      bindinput="bindKeyInput"             
+      placeholder="输入赞赏留言"
+      placeholder-style="font-size:28rpx;"/>
+  </view>
+  <view style='text-align: center;margin-top:220rpx'>
+    <button style='width:50%' type="primary" bindtap='payOrder'>赞赏</button>
+  </view>
+</view>

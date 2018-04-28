@@ -1,0 +1,16 @@
+www.aliyun.com	 
+
+阿里云账号nathan.lee@platenogroup.com	阿里云密码LAVANDEHOTELS
+
+实例名：guanjia001
+
+
+公网IP： 120.78.15.198
+内网IP： 10.80.232.252
+
+root  密码Ab123456789
+
+域名 butler.lavandehotels.club
+
+
+75943511@qq.com

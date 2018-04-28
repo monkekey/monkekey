@@ -1,0 +1,90 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.9",
+	"appid": "wx8d5821b6b93eb615",
+	"projectname": "yumiButler",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "二維碼",
+					"pathName": "pages/indexPage/indexPage",
+					"query": "scene=358858000000000_5栋515",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "选房",
+					"pathName": "pages/roomChange/roomChange",
+					"query": "scene=653767348174856_112",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "日历",
+					"pathName": "pages/claner/claner",
+					"query": "scene=653767348174856_112",
+					"scene": "1011"
+				},
+				{
+					"id": 3,
+					"name": "cheak",
+					"pathName": "pages/cheakin/cheakin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shopping",
+					"pathName": "pages/shopping/shopping",
+					"query": "scene=653767348174856_112",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "cheak",
+					"pathName": "pages/checkDetail/checkDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/order/index",
+					"query": "scene=653767348174856_112",
+					"scene": "1011"
+				},
+				{
+					"id": 7,
+					"name": "首页",
+					"pathName": "pages/indexPage/indexPage",
+					"query": "scene=",
+					"scene": "1011"
+				}
+			]
+		}
+	}
+}

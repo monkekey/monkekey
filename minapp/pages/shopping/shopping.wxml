@@ -1,0 +1,491 @@
+<import src="/zanui/stepper/index.wxml" />
+
+<view>
+
+  <view style='width: 100%;'>
+    <view style="display: flex;justify-content: space-around;border-bottom:2rpx solid #e8e8e8;height: 90rpx;align-items: center;background-color: #d81e06;">
+      <view>
+        <view style='width:50rpx;height:52rpx;display: flex;justify-content: center;align-items: center;' bindtap='skipIndex'>
+          <image style="width: 45rpx;height: 45rpx;" src="../../images/indexLogo.png"></image>
+        </view>
+      </view>
+      <view style='width:80%;display: flex;justify-content: center;border-bottom: 2rpx solid #fff;'>
+        <view style='width:85%'>
+          <input
+            placeholder="输入您要找的商品名称" 
+            placeholder-style="font-size:25rpx;color:#e6e6e6" 
+            style='font-size:25rpx;color:#fff'
+            bindinput="bindKeyInput" />
+        </view>
+        <view>
+          <view style='width:50rpx;height:52rpx;padding-left: 20rpx;' bindtap='clickKeyword'>
+            <image style="width: 35rpx;height: 35rpx;" src="../../images/sousuo.png"></image>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view style='width:50rpx;height:52rpx;display: flex;justify-content: center;align-items: center;' bindtap='skipOrder'>
+          <image style="width: 45rpx;height: 45rpx;" src="../../images/orderList.png"></image>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+
+  <view>
+    <view class="type-container" style=''>
+      <scroll-view class="type-navbar" scroll-x="true">
+          <view class="type-box" wx:for-items="{{categories}}" wx:key="id" wx:if="{{item.id != 'query' ? true : queryCommodityList.length > 0 ? true :false }}">
+              <view id="{{item.id}}" 
+                     
+                    class="type-navbar-item {{activeCategoryId == item.id ? 'type-item-on' : ''}}" 
+                    bindtap="tabClick">
+                  {{item.name}}
+              </view>
+          </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{category && queryCommodity}}">
+    <view style=''>
+      <scroll-view scroll-y="true" style="height: {{scrollHeight-98}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+        <!-- 图片轮播 -->
+        <!-- <view style="height:300rpx; width:100%;">
+          <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" style='height:300rpx;'>    
+            <block wx:for="{{notices}}" wx:for-index="index" wx:key="">    
+              <swiper-item>    
+                <image style='width:100%;height:100%' src="{{item.url}}" mode="aspectFill"/>    
+              </swiper-item>    
+            </block>    
+          </swiper> 
+        </view> -->
+
+        <!-- 人气推荐 -->
+        <view style='margin-top: 20rpx;background-color: #fff;width: 100%;'>
+          <view style='display: flex;justify-content: center;height: 70rpx;align-items: center;border:2rpx solid #e8e8e8'>
+            <view style='font-size:28rpx;'>
+              <view>人气推荐</view>
+            </view>
+          </view>
+          <!-- 货物展示 -->
+          <view style='margin-top:20rpx'>
+            <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%;background-color:#fff;height: 400rpx;">
+              <view style='display: flex;align-items: center;'>
+                <view style="width: 45%;height:400rpx;margin:0px 20rpx;" wx:for="{{hotCommodity}}" wx:for-index="index" wx:key="">
+                  <view style="">
+                    <view>
+                      <image style="width: 240rpx;height: 240rpx;" src="{{item.commodityImg}}"></image>
+                    </view>
+                    <view style=''>
+                      <view style='width: 240rpx;height:50rpx;font-size:30rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                        {{item.commodityName}}
+                      </view>             
+                    </view>
+                    <view>
+                      <view>
+                        <view style='width: 240rpx;height:40rpx;font-size:28rpx;color:#707070;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commoditySynopsis}}
+                        </view>              
+                      </view>
+                      <view style='height:60rpx;display: flex;align-items: center;justify-content: space-between;'>
+                        <view style='font-size:30rpx;color:red'>
+                          ￥{{item.commodityPrice}}/{{item.commodityUnit}}
+                        </view>
+                        <view style='display: flex;align-items: center;'>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='subcommodity' 
+                           data-index='{{index}}' 
+                           data-list='hotCommodity'
+                           data-commodityInfo='{{item}}'> 
+                            <image style='width:35rpx;height:35rpx' src='../../images/sub.png' ></image>
+                          </view>
+                          <view style='font-size: 26rpx;align-items: center;'>
+                            <input
+                              style="width: 35rpx;text-align:center"
+                              type="number"
+                              data-component-id="{{ index }}"
+                              data-min="{{ item.stepper.mix }}"
+                              data-max="{{ item.stepper.max }}"
+                              value="{{ item.stepper.stepper }}"
+                              disabled="{{ item.stepper.min >= item.stepper.max }}"
+                            ></input>
+                          </view>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='addcommodity' 
+                           data-index='{{index}}'
+                           data-list='hotCommodity'
+                           data-commodityInfo='{{item}}'>
+                            <image style='width:35rpx;height:35rpx' src='../../images/add.png'></image>
+                          </view>
+                        </view>              
+                      </view>
+                    </view>
+                    
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view> 
+
+        <!-- 新品首发 -->
+        <view style='margin-top:10rpx'>
+          <view style='display: flex;justify-content: center;height: 70rpx;align-items: center;background-color: #fff;border: 2rpx solid #e8e8e8'>
+            <view style='font-size:28rpx'>新品首发</view>
+          </view>
+          
+          <view style='display: flex;height:680rpx;background-color: #fff;'>
+            <view style='width:100%'>
+              <view style='display: flex;'>
+                <view style='width:100%;height:650rpx;flex-wrap:wrap;display: flex;justify-content: space-around;margin-top: 5px;'>
+                  <view style='width:45%;height:320rpx;' wx:for="{{newCommodity}}" wx:for-index="index" wx:key="">
+                    <view style='width:95%;height:200rpx;background-image:url({{item.commodityImg}});background-size:contain;background-repeat:no-repeat;background-position: center;margin-left:8rpx;'>
+                      <view style='display:flex;justify-content: space-between'>
+                        <view>
+                          <image style='width:35rpx;height:35rpx' src='../../images/upNew.png'></image>
+                        </view>
+                      </view>
+                    </view>
+
+                    <view style='width:95%;margin-left:8rpx;display: flex;justify-content:space-between;height:40rpx;align-items: center;background-color: #e8e8e8;border:2rpx solid #e8e8e8'>
+                      <view style='font-size: 26rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commodityName}}
+                      </view>
+                      <view style='color: red;font-size: 26rpx;'>
+                          ¥{{item.commodityPrice}}/{{item.commodityUnit}}
+                        </view>
+                    </view>
+                    
+
+                    <view style='height:80rpx;display: flex;align-items: center;justify-content: center;'>
+                      <view style='display: flex'>
+                        <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='subcommodity' 
+                           data-index='{{index}}' 
+                           data-list='newCommodity'
+                           data-commodityInfo='{{item}}'> 
+                            <image style='width:45rpx;height:45rpx' src='../../images/sub.png' ></image>
+                          </view>
+                          <view style='font-size: 26rpx;align-items: center;'>
+                            <input
+                              style="width: 35rpx;text-align:center"
+                              type="number"
+                              data-component-id="{{ index }}"
+                              data-min="{{ item.stepper.mix }}"
+                              data-max="{{ item.stepper.max }}"
+                              value="{{ item.stepper.stepper }}"
+                              disabled="{{ item.stepper.min >= item.stepper.max }}"
+                            ></input>
+                          </view>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='addcommodity' 
+                           data-index='{{index}}'
+                           data-list='newCommodity'
+                           data-commodityInfo='{{item}}'>
+                            <image style='width:45rpx;height:45rpx' src='../../images/add.png'></image>
+                          </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          
+        </view>
+
+        <!-- 猜你喜欢 -->
+        <view style='margin-top:10rpx'>
+          <view style='display: flex;justify-content: center;height: 70rpx;align-items: center;background-color: #fff;'>
+            <view style='font-size:28rpx'>猜你喜欢</view>
+            <!-- <view style='margin-left:15rpx;font-size:20rpx;color:#707070'>换一换</view> -->
+          </view>
+          
+          <view style='flex-wrap:wrap;display:flex;background-color: #fff;justify-content: space-around;align-content: center;'>
+              <view style='width:85%;border-top: 2rpx solid #e8e8e8'wx:for="{{likeCommodity}}" wx:for-index="index" wx:key="">
+                <view style='margin-top:10rpx;display:flex;justify-content: space-around;margin-top:10rpx'>
+                  <view style='width:30%'>
+                    <image style='width:180rpx;height:180rpx;border-radius: 50%' src='{{item.commodityImg}}'></image>
+                  </view>
+                  <view style='display: flex;align-items: center;width:70%;margin-left:15rpx'> 
+                    <view style="width: 100%;">
+                      <view style="font-size: 35rpx;">{{item.commodityName}}</view>
+                      <view style="font-size: 30rpx;color: #707070;">{{item.commoditySynopsis}}</view>
+                      <view style='display: flex;align-items: center;justify-content: space-between;'>
+                        <view style="color: #d81e06;">￥{{item.commodityPrice}}/{{item.commodityUnit}}</view>
+                        <view style='display: flex;align-items: center;'>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='subcommodity' 
+                           data-index='{{index}}' 
+                           data-list='likeCommodity'
+                           data-commodityInfo='{{item}}'>
+                            <image style='width:45rpx;height:45rpx' src='../../images/sub.png'></image>
+                          </view>
+                          <view style='font-size: 26rpx;align-items: center;'>
+                            <input
+                              style="width: 35rpx;text-align:center"
+                              type="number"
+                              data-component-id="{{ index }}"
+                              data-min="{{ item.stepper.mix }}"
+                              data-max="{{ item.stepper.max }}"
+                              value="{{ item.stepper.stepper }}"
+                              disabled="{{ item.stepper.min >= item.stepper.max }}"
+                            ></input>
+                          </view>
+                          <view 
+                            style='display: flex;align-items: center;' 
+                            bindtap='addcommodity' 
+                            data-index='{{index}}' 
+                            data-list='likeCommodity'
+                            data-commodityInfo='{{item}}'>
+                            <image style='width:45rpx;height:45rpx' src='../../images/add.png'></image>
+                          </view>
+                        </view>       
+                      </view>
+                      
+                    </view>
+                  </view>
+                </view>
+              </view>
+          </view>
+        </view>
+        <view style='height:50rpx;background-color:#fff;'></view>
+      </scroll-view>
+    </view>  
+  </view>
+
+  <!-- 类型商品列表 -->
+  <view wx:if="{{!category}}">
+    <view style=''>
+      <scroll-view scroll-y="true" style="height: {{scrollHeight-98}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+        <view style='margin-top:10rpx'>
+          <view style='display: flex;background-color: #fff;'>
+            <view style='width:100%'>
+              <view style='display: flex;'>
+                <view style='width:100%;flex-wrap:wrap;display: flex;justify-content: space-around;margin-top: 5px;'>
+                  <view style='width:45%;margin-bottom:20rpx' wx:for="{{commodityList}}" wx:for-index="index" wx:key="">
+                    <view style='width:95%;height:280rpx;margin-left:8rpx;'>
+                      <image style='width:100%;height:100%' src='{{item.commodityImg}}'></image>
+                    </view>
+
+                    <view style='width:95%;margin-left:8rpx;display: flex;height:40rpx;background: #e8e8e8;'>
+                      <view style='font-size: 26rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commoditySynopsis}}
+                      </view>
+                    </view>
+
+                    <view style='width:95%;margin-top:8rpx;margin-left:8rpx;display: flex;height:40rpx;justify-content:space-between; '>
+                      <view style='font-size: 25rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commodityName}}
+                      </view>
+                      <view style='font-size: 30rpx;color: #d81e06'>
+                          ￥{{item.commodityPrice}}/{{item.commodityUnit}}
+                      </view>
+                    </view>
+
+                    <view style='height:80rpx;display: flex;align-items: center;justify-content: center;'>
+                      <view style='display: flex'>
+                        <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='subcommodity' 
+                           data-index='{{index}}' 
+                           data-list='typeCommodity'
+                           data-commodityInfo='{{item}}'> 
+                            <image style='width:45rpx;height:45rpx' src='../../images/sub.png' ></image>
+                          </view>
+                          <view style='font-size: 26rpx;align-items: center;'>
+                            <input
+                              style="width: 35rpx;text-align:center"
+                              type="number"
+                              data-component-id="{{ index }}"
+                              data-min="{{ item.stepper.mix }}"
+                              data-max="{{ item.stepper.max }}"
+                              value="{{ item.stepper.stepper }}"
+                              disabled="{{ item.stepper.min >= item.stepper.max }}"
+                            ></input>
+                          </view>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='addcommodity' 
+                           data-index='{{index}}'
+                           data-list='typeCommodity'
+                           data-commodityInfo='{{item}}'>
+                            <image style='width:45rpx;height:45rpx' src='../../images/add.png'></image>
+                          </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style="text-align: center;font-size: 28rpx;background-color:#F4F4F4;color: #8a8a8a;margin-top: 10rpx;" wx:if="{{commodityPage.page}}">
+          -没有更多了-
+        </view>
+        <view style='height:50rpx;background-color:#8a8a8a;'></view>
+        
+      </scroll-view>
+    </view>  
+  </view>
+
+  <!-- 搜索商品列表 -->
+  <view wx:if="{{!queryCommodity}}">
+    <view style=''>
+      <scroll-view scroll-y="true" style="height: {{scrollHeight-98}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+        <view style='margin-top:10rpx'>
+          <view style='display: flex;background-color: #fff;'>
+            <view style='width:100%'>
+              <view style='display: flex;'>
+                <view style='width:100%;flex-wrap:wrap;display: flex;justify-content: space-around;margin-top: 5px;'>
+                  <view style='width:45%;margin-bottom:20rpx' wx:for="{{queryCommodityList}}" wx:for-index="index" wx:key="">
+                    <view style='width:95%;height:280rpx;margin-left:8rpx;'>
+                      <image style='width:100%;height:100%' src='{{item.commodityImg}}'></image>
+                    </view>
+
+                    <view style='width:95%;margin-left:8rpx;display: flex;height:40rpx;background: #e8e8e8;'>
+                      <view style='font-size: 26rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commoditySynopsis}}
+                      </view>
+                    </view>
+
+                    <view style='width:95%;margin-top:8rpx;margin-left:8rpx;display: flex;height:40rpx;justify-content:space-between; '>
+                      <view style='font-size: 25rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>
+                          {{item.commodityName}}
+                      </view>
+                      <view style='font-size: 30rpx;color: #d81e06'>
+                          ￥{{item.commodityPrice}}/{{item.commodityUnit}}
+                      </view>
+                    </view>
+
+                    <view style='height:80rpx;display: flex;align-items: center;justify-content: center;'>
+                      <view style='display: flex'>
+                        <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='subcommodity' 
+                           data-index='{{index}}' 
+                           data-list='queryCommodity'
+                           data-commodityInfo='{{item}}'> 
+                            <image style='width:45rpx;height:45rpx' src='../../images/sub.png' ></image>
+                          </view>
+                          <view style='font-size: 26rpx;align-items: center;'>
+                            <input
+                              style="width: 35rpx;text-align:center"
+                              type="number"
+                              data-component-id="{{ index }}"
+                              data-min="{{ item.stepper.mix }}"
+                              data-max="{{ item.stepper.max }}"
+                              value="{{ item.stepper.stepper }}"
+                              disabled="{{ item.stepper.min >= item.stepper.max }}"
+                            ></input>
+                          </view>
+                          <view
+                           style='display: flex;align-items: center;' 
+                           bindtap='addcommodity' 
+                           data-index='{{index}}'
+                           data-list='queryCommodity'
+                           data-commodityInfo='{{item}}'>
+                            <image style='width:45rpx;height:45rpx' src='../../images/add.png'></image>
+                          </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style="text-align: center;font-size: 28rpx;color: #8a8a8a;margin-top: 20rpx;" wx:if="{{keywordPage.page}}">
+          -没有更多了-
+        </view>
+        <view style='height:50rpx;background-color:#8a8a8a;'></view> 
+      </scroll-view>
+    </view>  
+  </view>
+
+  <!-- 购物车结算汇总栏 -->
+  <view style='display: flex;width:100%;position: fixed;bottom: 0;border-top: 2rpx solid #cdcdcd;background-color: #F4F4F4;height: 80rpx;justify-content:space-between;z-index:19'>
+    <view style='display: flex;align-items: center;' bindtap="toggleBottomPopup">
+      <view style='margin: 0px 10rpx;'>
+        <image style="width: 35rpx;height: 35rpx;" src="../../images/shopCart.png"></image>
+      </view>
+      <view style="font-size: 28rpx;">
+        <view>已选({{countSum}})</view>
+      </view>
+    </view>
+    <view style='display: flex;align-items: center'>
+      <view style='margin:10rpx'>
+        <view>￥{{countPrice}}</view>
+      </view>
+      <view bindtap='payOrder' style="width: 180rpx;background-color: #d81e06;height: 80rpx;display: flex;align-items: center;justify-content: center;">
+        <view style='color: #fff;font-size: 32rpx;'>结 算</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车详情栏 -->
+  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showBottomPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleBottomPopup" style="bottom: 80rpx;"></view>
+    <view class="zan-popup__container" style="bottom: 80rpx;">
+      <view class="zan-btns" style='margin:0px'>
+        <view style='display: flex;justify-content: space-between;font-size: 28rpx;background-color: #e6e6e6;height: 60rpx;align-items: center;color: #8a8a8a;'>
+          <view style="margin-left: 14rpx;">已选商品</view>
+          <view style='display: flex;margin-right: 14rpx;align-items: center;' bindtap='cleanCard'>
+            <view>
+              <image style='width:40rpx;height:40rpx' src='../../images/delAll.png'></image>
+            </view>
+            <view>
+              清空
+            </view>
+          </view>
+        </view>
+        <view wx:for="{{statistics}}" wx:for-index="index" wx:key="">
+          <view style='display: flex;justify-content: space-between;font-size: 28rpx;height: 80rpx;align-items: center;border-bottom: 2rpx solid #e6e6e6;'>
+            <view style='margin-left: 20rpx;'>{{item.commodityName}}</view>
+            <view style='display: flex;align-items: center;'>
+              <view>￥{{item.pirceSum}}</view>
+              <view>
+                <view style='display: flex;align-items: center;'>
+                  <view
+                    style='display: flex;align-items: center;' 
+                    bindtap='subCard' 
+                    data-index='{{index}}' 
+                    data-list='cardCommodity'
+                    data-commodityInfo='{{item}}'>
+                    <image style='width:45rpx;height:45rpx' src='../../images/sub.png'></image>
+                  </view>
+                  <view style='font-size: 26rpx;align-items: center;'>
+                    <input
+                      style="width: 35rpx;"
+                      type="number"
+                      data-component-id="{{ index }}"
+                      data-min="{{ item.stepper.mix }}"
+                      data-max="{{ item.stepper.max }}"
+                      value="{{ item.stepper.stepper }}"
+                      disabled="{{ item.stepper.min >= item.stepper.max }}"
+                    ></input>
+                  </view>
+                  <view 
+                    style='display: flex;align-items: center;' 
+                    bindtap='addCard' 
+                    data-index='{{index}}' 
+                    data-list='cardCommodity'
+                    data-commodityInfo='{{item}}'>
+                    <image style='width:45rpx;height:45rpx' src='../../images/add.png'></image>
+                  </view>
+                </view> 
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

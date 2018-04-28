@@ -1,0 +1,45 @@
+storepath:
+  wxacode: E:\teddyzhou\Lavande
+#E:\teddyzhou\Lavande\
+#/Users/teddyzhou/Documents/Jobs/lavande
+
+silk-v3-decoder: E:\teddyzhou\silk-v3-decoder
+#/Users/teddyzhou/Documents/silk-v3-decoder-master
+
+#####begin 数据配置#####
+#url: jdbc:mysql://127.0.0.1:3306/lavande_butler?characterEncoding=utf8
+butler:
+  datasource:
+    url: ${MYSQL_URL}
+    username: root
+    password: ym1218
+    driver-class-name: com.mysql.jdbc.Driver
+
+platform:
+  datasource:
+    url: jdbc:mysql://112.74.67.35:3306/platform?characterEncoding=utf8
+    username: root
+    password: ym1218
+    driver-class-name: com.mysql.jdbc.Driver
+
+swagger:
+  show: true
+
+spring:
+  jpa:
+    show-sql: true
+  redis:
+      hostName: localhost
+      port: 6379
+      password:
+      pool:
+        maxActive: 200
+        maxWait: -1
+        maxIdle: 8
+        minIdle: 0
+      timeout: 0
+      database: 0
+#      sentinel:
+#        master: mymaster
+#        nodes: localhost
+#        port: 6379

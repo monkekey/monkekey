@@ -1,0 +1,27 @@
+storepath:
+  wxacode: /home/yumibee/
+
+silk-v3-decoder: /home/silk-v3-decoder/
+
+#####begin 数据配置#####
+#url: jdbc:mysql://127.0.0.1:3306/lavande_butler?characterEncoding=utf8
+butler:
+  datasource:
+    url: jdbc:mysql://rdsp14gfzt8v17lgv5a1.mysql.rds.aliyuncs.com/bee?characterEncoding=utf8
+    username: szbnb
+    password: Iyumi@2017
+    driver-class-name: com.mysql.jdbc.Driver
+
+platform:
+  datasource:
+    url: jdbc:mysql://rdsp14gfzt8v17lgv5a1.mysql.rds.aliyuncs.com/platform?characterEncoding=utf8
+    username: szbnb
+    password: Iyumi@2017
+    driver-class-name: com.mysql.jdbc.Driver
+
+swagger:
+  show: false
+
+spring:
+  jpa:
+    show-sql: false

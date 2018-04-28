@@ -1,0 +1,4 @@
+/* pages/pay/pay.wxss */
+page {   
+  background-color: #e8e8e8;  
+} 

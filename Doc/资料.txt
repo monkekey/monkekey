@@ -1,0 +1,11 @@
+﻿1、nginx 处理静态资源
+https://github.com/pzxwhc/MineKnowContainer/issues/67
+
+
+https://coolshell.cn/articles/18094.html
+
+cd /var/ssl
+./certbot-auto --authenticator standalone --installer nginx -d butler.lavandehotels.club --pre-hook "service nginx stop" --post-hook "service nginx start"
+
+证书
+/etc/letsencrypt.

@@ -1,0 +1,252 @@
+<template name="msgItem">
+  <view  style="display:inline-block;" bindtap="playVoice" data-msg="{{message}}" data-idx="{{idx}}">
+    <text wx:if="{{msgtype=='text'}}" style="padding:0;margin:0;width:auto;word-wrap:break-word;">{{message}}</text> 
+    <view wx:if="{{msgtype=='voice'}}" class="cricleplay">
+      <view class="small"></view>
+      <view class="middle" style="animation:{{playing?'show2 2s ease-in-out infinite':'none'}}"></view>
+      <view class="large" style="animation:{{playing?'show3 2s ease-in-out infinite':'none'}}"></view>
+    </view>
+    <image wx:if="{{msgtype=='img'}}" style="max-width:120px;" mode="widthFix" src="{{message}}"></image> 
+    <view wx:if="{{msgtype=='shop'}}" wx:for="{{carArray}}" wx:key="">
+      <text class="name flex-1">{{item.name}} ({{item.price}} * {{item.num}})</text>
+    </view>
+  </view>
+</template>
+
+<view class="container" wx:if="{{chgIndex}}" style='overflow：hidden'>
+  <!-- 导航栏 -->
+   <view class="type-container" style="height:60rpx">
+      <view class="type-navbar" scroll-x="true" style="height:60rpx;display:flex;justify-content:center;box-shadow: 2rpx 2rpx 20rpx #bfbfbf;">
+          <view class="type-box" style='text-align:center;' wx:for-items="{{categories}}" wx:key="id">
+              <view id="{{item.id}}" class="type-navbar-item {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick">
+                  {{item.name}}
+              </view>
+          </view>
+      </view>
+  </view> 
+  <!-- 图片轮播 -->
+  <view style="height:{{height-60}}px; width:100%;margin-top: 30rpx;">
+    <!-- <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">    
+      <block wx:for="{{notices}}" wx:for-index="index" wx:key="">    
+        <swiper-item>    
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>    
+        </swiper-item>    
+      </block>    
+    </swiper>  -->
+    <image style='width:100%;height:100%' src='../../images/indexImg.png'></image>
+  </view>
+  <!--小二信息-->
+  <view class="butler-info flex-column" style="height:260rpx;">
+    <view class="butler-info-content flex-row" style="margin-top: 20rpx;">
+      <view class="flex-column" style="flex: 8;;background-color: #FFF;border: 2rpx solid #e8e8e8;border-top-left-radius: 16px;border-top-right-radius: 16px;height: 220rpx;box-shadow: 2rpx 2rpx 20rpx #bfbfbf;">
+        <view style='display: flex;align-items: center;margin-bottom: 15px;justify-content: space-between;height:100rpx;'>
+          <view style="margin-top: 20rpx;margin-left: 20rpx;">
+            <view style="font-size:36rpx;flex:1;color:black;">{{butlerInfo.userName}}</view>
+            <view style='display: flex;align-items: center;'>
+                <image class="star" mode="aspectFill" src="../../images/starNum.png" style="width: 26rpx;height: 26rpx;" />
+                <view style="font-size: 20rpx;">{{starVal}}</view>
+              </view> 
+          </view>
+          <view style="display: flex;z-index: 9;">
+            <view style="margin-top: 80rpx;">
+              <image id="comment" mode="aspectFill" src="../../images/zan1.gif" bindtap="commentDialog" style='width:56rpx;height:56rpx' />
+            </view>
+            <view>
+              <image style="width: {{height/3}}px;height:{{height/3}}px;border-radius:50%;border:4rpx solid #FFF" src="{{butlerInfo.bulterHead}}" />
+            </view>
+            <view style="margin-top: 83rpx;">
+              <image id="award" mode="aspectFill" style="margin-top: 2px;margin-left: 6rpx;" style='width: 50rpx;height: 50rpx;' src="../../images/comment.png" bindtap="awardtDialog" />
+            </view>
+          </view> 
+          <view class="" style="margin-right: 24rpx;height: 138rpx;">
+            <view class="" style='height: 76rpx;margin-top: 36rpx;text-align: right;'>
+               <image src='../../images/yumi_logo1.png' style="width: 110rpx;height: 70rpx;"></image> 
+            </view>
+            <view style="font-size: 20rpx; text-align: center;color: #4C5A68;">{{innInfo.innName}}</view>
+          </view>
+        </view>
+        <!-- 客房服务 -->
+        <view class="flex-row" style="background-color: #f7f6f3;height: 60px;align-items: center;">
+            <view id="tapWIFI" class="flex-column" style="flex:1;align-items:center;" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/WF.png" />
+              </view>
+              <text class="small-txt">WiFi</text>
+            </view>
+            <view id="tapClean" class="flex-column" style="flex:1;align-items:center" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/icon-clean1.png" />
+              </view>
+              <text class="small-txt">打扫</text>
+            </view>
+            <view id="tapBattery" class="flex-column" style="flex:1;align-items:center" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/overstay.png" />
+              </view>
+              <text class="small-txt">续住</text>
+            </view>
+            <view id="tapBorrow" class="flex-column" style="flex:1;align-items:center" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/icon-borrow1.png" />
+              </view>
+              <text class="small-txt">送物</text>
+            </view>
+            <view id="tapWake" class="flex-column" style="flex:1;align-items:center" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/icon-wake1.png" />
+              </view>
+              <text class="small-txt">叫醒</text>
+            </view>
+            <view id="tapWechat" class="flex-column" style="flex:1;align-items:center;" bindtap="bindSelectService">
+              <view class="services">
+                <image mode="aspectFill" src="../../images/service1.png" />
+              </view>
+              <text class="small-txt">维修</text>
+            </view>
+          </view>
+        </view>
+        
+      </view>
+
+    </view>
+
+  <view class="msg" style='height:{{height+64}}rpx;' >
+    <scroll-view scroll-y="true" scroll-top="100000000000000000" class="msg-content" style="height:540rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;" animation="{{animation}}" scroll-top="{{scrollTop}}">
+      <view class="flex-column" style="padding:8px">
+        <view wx:for="{{messageArray}}"  wx:key="item.sendtime" wx:for-index="idx" wx:for-item="itemName" style="padding-top:4rpx">
+          <view class="clearfix flex-row" wx:if="{{itemName.type == 'self'}}">
+            <view style='flex:1; min-width:85rpx'></view>
+            <view class="right-message padding_half">
+              <template is="msgItem" data="{{...itemName,idx:idx,carArray:carArray}}"/>
+            </view>
+            <view class="right-Triangle"></view>
+            <view class="right-Avatar">
+              <image class='avatar' src="{{selfAvatarUrl}}"></image>
+            </view>
+          </view>
+          <view class="clearfix flex-row" style="padding-right:85rpx" wx:else>
+            <view class="left-Avatar">
+              <image class='avatar' src="../../images/xiaoer.png"></image>
+            </view>
+            <view class="left-Triangle"></view>
+            <view class="left-message padding_half">
+              <template is="msgItem" data="{{...itemName}}"/>
+            </view>
+            <view style='flex:1; '></view>
+          </view>
+        </view>
+        <view style='height:76rpx'></view>
+      </view>
+
+    </scroll-view>
+  </view>
+  
+  <!--评论盒子-->
+  <view class="cf-bg" catchtap="cemojiCfBg" style="display:{{cfBg ? 'block' : 'none'}}"></view>
+  <view class="comment-fixed">
+    <view class="cf-box">
+      <image style="width: 28px; height: 28px;" mode="aspectFill" src="../../images/voice.png" bindtap="toggleMsg"/>
+
+      <input wx:if="{{!isVoiceType}}" type='text' style="flex-grow:1;" placeholder="{{placeholderText}}" class="cf-content" bindinput="textAreaInput" bindfocus="textAreaFocus" maxlength="200" bindblur="textAreaBlur" auto-height value="{{inputValue}}"/>
+      <button wx:if="{{isVoiceType}}" style="height:26px;flex-grow:1;" size="mini"  bindtouchstart="mytouchstart" bindtouchend="mytouchend">{{voicing?'松开 结束':'按住 说话'}}</button>
+
+      <image wx:if="{{!isShow}}" style="width: 28px; height: 28px;" mode="aspectFill" src="../../images/emoji.png" bindtap="emojiShowHide"/>
+      <image wx:if="{{isShow}}" style="width: 28px; height: 28px;" mode="aspectFill" src="../../images/keyboard.png"  bindtap="emojiShowHide"/>
+
+      <text wx:if="{{writing}}" class="cf-send touch-active" style="background:#2aa515" size="mini" bindtap="sendMsg">发送</text>
+      <image wx:if="{{!writing}}" style="width: 28px; height: 28px;" mode="aspectFill" src="../../images/plus.png" bindtap="chooseImg" />
+    </view>
+
+    <!--emoji表情盒子-->
+    <view class="emoji-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}"> 
+      <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+        <block wx:for="{{emojis}}" wx:for-item="e" wx:for-index="idx" wx:key="{{idx}}" >
+          <view class="emoji-cell">
+            <image class="touch-active" catchtap="emojiChoose" src="../../images/emoji/{{e.emoji}}.png" data-emoji="{{e.char}}" data-oxf="{{e.emoji}}"></image>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- 评价 -->
+    <view class="zan-dialog {{ award ? 'zan-dialog--show' : '' }}">
+      <view class="zan-dialog__mask" bindtap="awardtDialog" /> 
+      <view class="zan-dialog__container" style="width: 90%;margin-left: 38rpx;box-shadow: 6rpx 6rpx 10rpx #888888;margin-bottom: 18rpx;">
+        <view style='display:flex;border-bottom:2rpx solid #e8e8e8'>
+          <view style="margin: 30rpx 20rpx 20rpx 20rpx;" bindtap='closeAward'>
+            <image style="width: 40rpx;height: 40rpx;" src='../../images/close.png'></image>
+          </view>
+          <view style="text-align: center;margin: 30rpx 20rpx 20rpx 20rpx;">
+            <view style="font-size: 30rpx;padding-left: 220rpx;">评价</view>
+          </view>
+        </view>
+        <view>
+          <view style='text-align: center;'>
+            <view style='display: flex;margin-left: 140rpx;'>
+              <image
+               bindtap='commentStar'
+               data-startNum='1'
+               style="width: 40rpx;height: 40rpx;margin: 20rpx;"
+               src='../../images/{{stars >= 1 ? "starYes" : "starNo"}}.png'></image>
+              <image
+               bindtap='commentStar' 
+               data-startNum='2'
+               style="width: 40rpx;height: 40rpx;margin: 20rpx;" 
+               src='../../images/{{stars >= 2 ? "starYes" : "starNo"}}.png'></image>
+              <image
+               bindtap='commentStar' 
+               data-startNum='3'
+               style="width: 40rpx;height: 40rpx;margin: 20rpx;" 
+               src='../../images/{{stars >= 3 ? "starYes" : "starNo"}}.png'></image>
+              <image
+               bindtap='commentStar' 
+               data-startNum='4'
+               style="width: 40rpx;height: 40rpx;margin: 20rpx;" 
+               src='../../images/{{stars >= 4 ? "starYes" : "starNo"}}.png'></image>
+              <image
+               bindtap='commentStar' 
+               data-startNum='5'
+               style="width: 40rpx;height: 40rpx;margin: 20rpx;" 
+               src='../../images/{{stars == 5 ? "starYes" : "starNo"}}.png'></image>
+            </view>
+            <view style='color: #e98f36;font-size: 24rpx;margin: 10rpx;'>
+              {{stars == 5 ? "非常满意，无可挑剔" : "仍然需要改进"}}
+            </view>
+            <view style='width: 600rpx;margin-left: 36rpx;'>
+              <scroll-view scroll-y style="display: flex;justify-content: center;height:180rpx;flex-wrap: wrap;">
+              <view style='width: 600rpx;'>
+                <view
+                  wx:for="{{starComment}}" 
+                  wx:for-item="c" 
+                  wx:for-index="idx" 
+                  wx:data-index='{{idx}}' 
+                  wx:key="{{idx}}" 
+                  style='width:240rpx;display:inline-block;margin: 14rpx;'>
+                    <view
+                    data-index='{{idx}}' 
+                    bindtap='commentClick' 
+                    class="{{c.flag == 1 ? 'comment' : 'commentClick'}}">
+                      {{c.tag}}
+                    </view>
+                  </view>
+                </view>
+              </scroll-view>
+            </view>
+            <view style="margin-top: 20rpx;">
+              <view style='width:499rpx;height:70rpx;margin-left:82rpx'>
+                <textarea style='height: 66rpx;text-align: left;padding-left: 14rpx;font-size: 32rpx;background-color: #e8e8e8;width: 499rpx;' placeholder-style="font-size:32rpx" placeholder="其他想说的" bindinput="bindKeyText"/>
+              </view>
+            </view>
+            <view>
+              <view style="width: 512rpx;margin-left: 80rpx;">
+                <button class="zan-btn zan-btn--warn" bindtap="commentSub">匿名提交</button>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+
+  </view>
+</view>

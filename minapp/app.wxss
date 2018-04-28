@@ -1,0 +1,241 @@
+/**app.wxss**/
+@import 'wa-ui.wxss';
+@import 'zanui/index.wxss';
+page{
+  height: 100%
+}
+ .container {
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+}  
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column
+}
+
+.padding{
+  padding:20rpx;
+}
+.padding_half{
+  padding: 10rpx;
+}
+.padding_quarter{
+  padding: 5rpx;
+}
+.graySpace{
+  padding-left: 40rpx;
+  background: #eee;
+  font-size: 12px;
+  min-height: 30rpx;
+}
+.item-avatar .text_box,.item-avatar-lg .text_box{
+  display: flex;
+  flex-direction: column
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+}
+.flex{
+  display: flex;
+}
+.title{
+  font-family: "微软雅黑";
+  font-size: 32rpx;
+}
+.message{
+  font-size: 30rpx;
+}
+
+.item-avatar-lg,.item-avatar-md,.item-avatar-sm,.item-avatar-xs{
+  display: flex;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+  cursor: pointer;
+  position:relative;
+}
+.item-avatar-lg image{
+  float: left;
+  width: 125rpx;
+  height: 125rpx;
+  box-sizing: border-box
+}
+.item-avatar-md image{
+  float: left;
+  width: 85rpx;
+  height: 85rpx;
+  box-sizing: border-box
+}
+.item-avatar-sm image{
+  float: left;
+  width: 65rpx;
+  height: 65rpx;
+  box-sizing: border-box
+}
+.item-avatar-xs image{
+  float: left;
+  width: 45rpx;
+  height: 45rpx;
+  box-sizing: border-box
+}
+
+.item-avatar-md .marks{
+  position: absolute;
+  top: 0px;
+  left: 90rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: red;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-size: 28rpx;
+}
+.item-avatar-lg .item-text,.item-avatar-md .item-text,.item-avatar-sm .item-text,.item-avatar-xs .item-text{
+  padding-left: 10px;
+}
+.item-avatar-md .item-time{
+  position: absolute;
+  right: 20rpx;
+}
+.clearfix{
+  overflow: hidden;
+}
+.icon::before{
+  font-size: 70rpx
+}
+.floatR{
+  float: right;
+}
+.display-flex{
+  display: flex
+}
+
+.justify-space{
+  justify-content: space-between;
+}
+.container1 {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 15px 0;
+  color:#444;
+}
+.container1::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 100%;
+  height: 1rpx;
+  background-color: #e2e2e2;
+  z-index: 5;
+}
+.doc-title {
+  position: relative;
+  padding: 15px 0;
+  margin: 10px 15px;
+  line-height: 25px;
+  font-size: 25px;
+  color: #666;
+}
+.doc-description {
+  margin: 14px 0;
+  padding: 0 15px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+}
+.text-color{
+  color:#8c878c;
+  font-weight:normal;
+  font-style:normal;
+}
+.color-blue{
+  color: #0B82E6;
+}
+.bgcolor-blue{
+  background-color: #0B82E6;
+}
+.global-btn-block-padding {
+  display: flex;
+  width: 100%;
+  padding: 10px 15px; 
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+.global-btn-block {
+  display: flex;
+  width: 100%;
+  /* padding: 10px 15px; */
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.global-btn-block .zan-btn--primary {
+  height: 90rpx;
+  line-height: 90rpx;
+  /* padding-left: 50rpx; */
+  font-size: 28rpx;
+  width: inherit;
+  margin-left: inherit;
+  background: #fda305;
+  border: 0;
+  text-align: center;
+  border-radius:0px;
+  flex:1;
+}
+
+.global-btn-block  .return-btn {
+  /* margin-right: 30rpx; */
+  color: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  background: #ccc;
+  text-align: center;
+  margin:0;
+  border-radius:0px;
+  border:1rpx solid #CCC;
+  flex:1;
+}
+.over-ellipsis-simpleline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break:break-all;
+}
+
+.over-ellipsis-twoline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break:break-all;
+}
+
+.over-ellipsis-threeline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  word-break:break-all;
+}

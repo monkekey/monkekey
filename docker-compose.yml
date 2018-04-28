@@ -1,0 +1,36 @@
+yumi-bee-service1:
+  build: ./web
+  container_name: yumi-bee-service1
+  environment:
+    ENV_ACTIVE: $ENV_ACTIVE
+    JAVA_OPTS: '-Xmx800m -Xms800m'
+  # 宿主机的/mnt/yumibee/resource目录挂载容器中的/home/yumibee目录，
+  volumes:
+    - /mnt/yumibee/resource:/home/yumibee
+    - /mnt/yumibee/logs/yumi-bee-service1:/home/logs
+  # 意外退出时自动重启
+  restart: always
+  mem_limit: 1024m
+  ports:
+    - 9050:9080
+yumi-bee-netty-service:
+  build: ./web
+  container_name: lavande-netty-service
+  environment:
+    ENV_ACTIVE: $ENV_ACTIVE
+    JAVA_OPTS: '-Xmx800m -Xms800m'
+  # 宿主机的/mnt/yumibee/resource目录挂载容器中的/home/yumibee目录，
+  volumes:
+    - /mnt/yumibee/resource:/home/yumibee
+    - /mnt/yumibee/logs/yumi-bee-service:/home/logs
+  restart: always
+  mem_limit: 1024m
+  ports:
+    - 5544:5544
+  extra_hosts:
+    - "dockerhost: $DOCKERHOST"
+yumi-bee-ui:
+  build: ./WebUI
+  restart: always
+  ports:
+    - 9051:80
