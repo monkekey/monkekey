@@ -160,9 +160,9 @@
         },
         uploadurl : consts.API_URL + '/uploadFile/upload',
         updloadData:{
-          fileName:'yumi-bee',
-          upperFileName:'commodity-img',
-          footFileName:'img'
+          fileName:'hpd',
+          upperFileName:'commodityImg',
+          footFileName:''
         },
         loading:false
       }
@@ -200,8 +200,9 @@
         this.$refs.formValidate.resetFields()
       },
       uploadSuccess: function(res, file){
+        console.log('res',res)
         if (res.success) {
-          this.$set(this.formValidate, 'commodityImg', "http://yumi-bee.oss-cn-shenzhen.aliyuncs.com/" + res.data)
+          this.$set(this.formValidate, 'commodityImg', "http://hpd.oss-cn-hangzhou.aliyuncs.com/" + res.data)
           this.loading = false
         }
       },

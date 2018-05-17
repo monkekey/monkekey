@@ -9,7 +9,7 @@
   <view style="width:100%;height:{{height-50}}px;filter: opacity(30%);text-align: center;margin-top: 280rpx;" wx:if="{{orderList.length == 0}}">
     <view>
       <view>
-        <image style='width:280rpx;height:280rpx' src='../../images/logoNoData.png'></image>
+        <image style='width:280rpx;height:280rpx' src='../../images/hpdNoData.png'></image>
       </view>
       <view style='color:#707070'>
         暂无数据

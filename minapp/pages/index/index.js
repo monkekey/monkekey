@@ -46,9 +46,9 @@ Page({
     customer: {},
     butlerList: [],
     butlerInfo: { account: 'zengqiuyan', userName: "加载中", age: 22, nature: "活泼、开朗", specialty: "美食家（吃货）", favoriteQty: 510, favorited: false, bulterHead: "http://aploproducts.oss-cn-shenzhen.aliyuncs.com/xiaoer.png" },
-    innInfo: { innName: '寓米公寓|琶洲店' },
+    innInfo: { innName: '汉普敦' },
     carArray: [{ "price": "6.40", "num": 1, "name": "夹心饼干", "subPrice": "6.40", "index": 3, "mark": "a3" }],
-    categories: [{ id: "TAP1", name: "小二" }],
+    categories: [{ id: "TAP1", name: "管家" }],
     activeCategoryId: "TAP1",
     comment: false,
     award: false,
@@ -139,15 +139,6 @@ Page({
       } else {
         that.initWebSocket();
       }
-    } else if (options.scene && scenes.length == 1){
-      console.log('scenes', scenes)
-      //华美国际店
-      // wx.reLaunch({
-      //   url: '../roomChange/roomChange',
-      // })
-      wx.redirectTo({
-        url: '../roomChange/roomChange',
-      })
     } else {
       that.setData({ chgIndex: true,})
       wx.getLocation({
@@ -192,7 +183,7 @@ Page({
       })
     }
 
-    var categories = [{ id: "TAP1", name: "小二" }];
+    var categories = [{ id: "TAP1", name: "管家" }];
     categories.push({ name: "严选", id: "TAP2" });
     // categories.push({ name: "Trips", id: "TAP3" });
     that.getWiFi(scenes[0], scenes[1])

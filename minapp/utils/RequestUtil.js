@@ -1,14 +1,11 @@
 var app = getApp();
-// var BASEAPI = 'http://192.168.10.47:9080';
-// var WSAPI = 'ws://192.168.10.47:5544/ws';
-// var SERVER = 'http://192.168.10.47:8090';
+var BASEAPI = 'http://192.168.10.26:9080';
+var WSAPI = 'ws://192.168.10.26:5544/ws';
+var SERVER = 'http://192.168.10.26:8090';
 
-// var platformAPI = 'http://192.168.10.81:9091';
-
-var platformAPI = 'https://restapi.iyumi.com';
-var BASEAPI = 'https://restapi.iyumi.com/';
-var WSAPI = 'wss://restapi.iyumi.com/ws';
-var SERVER = 'https://api.iyumi.com/web';
+// var BASEAPI = 'https://restapi.iyumi.com/';
+// var WSAPI = 'wss://restapi.iyumi.com/ws';
+// var SERVER = 'https://api.iyumi.com/web';
 
 
 function request(url, data, method, callback) {
@@ -220,9 +217,8 @@ module.exports = {
     request1(url, data, 'PUT', callback);
   },
   BASE_URL: BASEAPI,
-  WEB_URL: BASEAPI + '/yumi_bee/',
-  API_URL: BASEAPI + '/yumi_bee/api/wx/',
+  WEB_URL: BASEAPI + '/hpd/',
+  API_URL: BASEAPI + '/hpd/api/wx/',
   WEBSOCKET_URL: WSAPI,
   YUMIHUI_URL: SERVER,
-  PLAR_URL: platformAPI,
 }

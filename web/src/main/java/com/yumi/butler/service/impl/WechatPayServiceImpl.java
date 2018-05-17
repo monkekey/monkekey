@@ -60,7 +60,8 @@ public class WechatPayServiceImpl implements WechatPayService {
             return RequestResult.fail("应用数据错误");
         }
         paternerKey = DESHelper.decrypt(paternerKey, mch_id.concat("wechat_mch").substring(0, 8));
-
+        String ss = DESHelper.encrypt("herechina20160423190813826005801", mch_id.concat("wechat_mch").substring(0, 8));
+        System.out.println(ss);
         //获取预订单结果
         RequestResult result = getUnifiedorderResult(platformCode, openid, body, orderNo, notifyUrl, attach, total_fee, create_ip, tradeType);
         if(!result.isSuccess()){

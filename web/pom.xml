@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>SocketServer</groupId>
-    <artifactId>com.yumi</artifactId>
+    <artifactId>com.hpd</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -213,7 +213,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>yumi-butler-service</finalName>
+                    <finalName>hpd-butler-service</finalName>
                 </configuration>
             </plugin>
             <plugin>

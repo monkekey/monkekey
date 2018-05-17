@@ -51,6 +51,9 @@ module.exports = {
   getCommodity: function (data, callback) {
     Request.get(SERVER + `getCommodity`, data, callback)
   },
+  pay: function (data, callback){
+    Request.post(SERVER + `pay`, data, callback)
+  },
   savePayment: function (data, callback) {
     Request.post(SERVER + `savePayment`, data, callback)
   },

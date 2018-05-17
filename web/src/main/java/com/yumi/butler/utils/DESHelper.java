@@ -1,6 +1,8 @@
 package com.yumi.butler.utils;
 
 
+import com.yumi.netty.tools.StringUtils;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -102,10 +104,10 @@ public class DESHelper {
 //		BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
 //		System.out.println(encoder.encode("lf13579"));
 
-//		String appid = "wx8d5821b6b93eb615";
-//		String secret = "302329209b43c1fa916b700b1b99ea78";
-//		String encryptStr = encrypt(secret, StringUtils.sortByChart(appid.concat("lavandeinn")).substring(0, 8));
-//		System.out.println(encryptStr);
+		String appid = "1269319501";
+		String secret = "herechina20160423190813826005801";
+		String encryptStr = encrypt(secret, StringUtils.sortByChart(appid.concat("wechat_mch")).substring(0, 8));
+		System.out.println(encryptStr);
 //		String decryptStr = decrypt(encryptStr, StringUtils.sortByChart(appid.concat("lavandeinn")).substring(0, 8));
 //		System.out.println(decryptStr);
 //		System.out.println(decryptStr.equals(secret));

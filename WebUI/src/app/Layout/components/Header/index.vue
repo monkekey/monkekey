@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-center">
-      <img src="static/images/yumi_logo1.png" class="logo" style="width: 87.6px;height: 60px;">
+      <img src="static/images/hpd.png" class="logo" style="width: 120px;height: auto;">
       <!-- <Button type="ghost" size="large" icon="social-windows" @click="$router.push('/')">后台管理系统</Button> -->
       <div class="operations">
         <Button-group size="small">

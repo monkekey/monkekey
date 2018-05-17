@@ -12,7 +12,7 @@ butler:
   datasource:
     url: ${MYSQL_URL}
     username: root
-    password: ym1218
+    password: xiaer^_^!
     driver-class-name: com.mysql.jdbc.Driver
 
 platform:

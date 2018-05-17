@@ -1,7 +1,7 @@
 <template>
     <Card class="login" dis-hover>
       <div class="logo">
-          <img class="img" src="static/images/yumi_logo1.png" style="width:109.5px;height:75">
+          <img class="img" src="static/images/hpd.png" style="width: auto;height: 180px;">
       </div>
       <Form ref="formInline" :model="formInline" :rules="ruleInline" >
         

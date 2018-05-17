@@ -746,16 +746,19 @@ const shoppingData = {
             return;
           }
 
-          WechatDataAPI.actPayData({
+          lavandeAPI.pay({
             // platformCode: getApp().globalData.platformCode,
-            platformCode: 'WECHAT_XCX_BEE',
-            outTradeNo: order,
-            amount: countPrice,
-            // amount: 0.01,
-            body: '严选-' + userinfo.nickName + '购买商品共计:' + countPrice + "元",
+            platformCode: 'Hanpudun',
+            openid: openid,
+            body: userinfo.nickName +'购买商品共计:' + countPrice + "元",
+            orderNo: order,
             notifyUrl: getApp().globalData.payNotifyUrl,
-            attach: 'BEE-YANXUAN' + new Date().getTime(),
-            openId: openid,
+            attach: 'HanpudunShop' + new Date().getTime(),
+            // total_fee: countPrice,
+            total_fee: 0.01,
+            create_ip:'',
+            tradeType:'JSAPI'
+            
           }, function (payDataRes) {
             wx.hideLoading()
             if (!payDataRes.success) {
@@ -767,7 +770,8 @@ const shoppingData = {
               })
               return;
             }
-            var payData = payDataRes.result;
+            var payData = payDataRes.data;
+            console.log('payDataRes', payData)
             wx.requestPayment({
               'timeStamp': payData.timeStamp,
               'nonceStr': payData.nonceStr,

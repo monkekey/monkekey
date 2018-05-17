@@ -2,15 +2,15 @@ server:
   port: 9080
   tomcat:
     uri-encoding: UTF-8
-  context-path: /yumi_bee
+  context-path: /hpd
 
 spring:
   http:
     multipart:
       max-file-size: 10MB
   profiles:
-    active: @profiles.active@
-#    active: ${ENV_ACTIVE}
+#    active: @profiles.active@
+    active: ${ENV_ACTIVE}
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat,wall,log4j
@@ -92,12 +92,14 @@ aliyun:
   appcode: 8ad7520273e54ce395d2fca18a4901f8
 
 ossCommodityImg:
-  key: 9RRCeuPpUVBkqfy0
-  secret: WX2bccmcdDN4J31MkOcPTvfoPdeAJA
-  endpoint: oss-cn-shenzhen.aliyuncs.com
-  bucket: yumi-bee
+  key: LTAIl7SAtoK6bRU1
+  secret: RFnTY1xpMm14h8xiOe8RU21Qt9VCny
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  bucket: hpd
 
-yumi:
+#  https://hpd.oss-cn-hangzhou.aliyuncs.com/commodityImg/hpd.png
+
+hpd:
   redis:
     open: false  # 是否开启redis缓存  true开启   false关闭
   shiro:

@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.9",
-	"appid": "wx8d5821b6b93eb615",
-	"projectname": "yumiButler",
+	"appid": "wx1fc0d7943ed082aa",
+	"projectname": "HPD",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -32,10 +32,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "二維碼",
-					"pathName": "pages/indexPage/indexPage",
-					"query": "scene=358858000000000_5栋515",
-					"scene": "1011"
+					"name": "二维码",
+					"pathName": "pages/index/index",
+					"query": "scene=653767348174856_165"
 				},
 				{
 					"id": -1,

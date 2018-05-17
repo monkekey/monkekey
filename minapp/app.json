@@ -1,26 +1,16 @@
 {
   "pages": [
-    "pages/indexPage/indexPage",
     "pages/index/index",
     "pages/shop/index",
     "pages/order/index",
     "pages/playTour/index",
     "pages/pay/pay",
-    "pages/shopping/shopping",
-
-
-    "pages/roomChange/roomChange",
-    "pages/claner/claner",
-    "pages/cheakin/cheakin",
-    "pages/IDCard/IDCard",
-    "pages/orderPay/orderPay",
-    "pages/checkDetail/checkDetail",
-    "pages/roomProp/roomProp"
+    "pages/shopping/shopping"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "寓米蜂",
+    "navigationBarTitleText": "汉普敦",
     "navigationBarTextStyle": "#ffffff",
     "disableScroll": true
   }

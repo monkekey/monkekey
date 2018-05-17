@@ -47,7 +47,7 @@ const app = {
     }
   },
   globalData:{
-    platformCode: 'Bee', //应用CODE
+    platformCode: 'Hanpudun', //应用CODE
     userInfo: {},
     openid: '',
     wxUserInfo: {},

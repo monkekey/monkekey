@@ -5,10 +5,7 @@ import com.yumi.butler.constant.CommonFlag;
 import com.yumi.butler.domain.*;
 import com.yumi.butler.service.*;
 import com.yumi.butler.service.*;
-import com.yumi.butler.utils.CoodinateCovertor;
-import com.yumi.butler.utils.DESHelper;
-import com.yumi.butler.utils.HeaderUtils;
-import com.yumi.butler.utils.LngLat;
+import com.yumi.butler.utils.*;
 import com.yumi.butler.vo.*;
 import com.yumi.netty.tools.StringUtils;
 import com.alibaba.fastjson.JSON;
@@ -37,6 +34,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
 import java.io.*;
@@ -54,6 +52,7 @@ import java.util.*;
 public class WechatController {
     @Value("${storepath.wxacode}")
     private String wxacodeUrl;
+
 
     @Autowired
     private IWechataccountRepository iWechataccountRepository;
@@ -85,6 +84,8 @@ public class WechatController {
     private ISOrderDetailRepository isOrderDetailRepository;
     @Autowired
     private HotelCommodityService hotelCommodityService;
+    @Autowired
+    private WechatPayService wechatPayService;
 
     private String page = "pages/index/index";
 
@@ -580,6 +581,25 @@ public class WechatController {
             return RequestResult.fail("暂无新商品");
         }
         return RequestResult.success(commodityVOList);
+    }
+
+    @ApiOperation(value = "pay|支付")
+    @PostMapping("pay")
+    public RequestResult pay(@RequestBody PayVO payVO){
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String ip = "";
+        try {
+            ip = CommonUtils.getIpAddress(request);
+        } catch (IOException e) {
+            return RequestResult.fail("获取IP失败");
+        }
+        if(ip == null || ip.equals("")){
+            return RequestResult.fail("获取IP错误");
+        }
+        payVO.setCreate_ip(ip);
+        return wechatPayService.getWxAppPayInfo(payVO.getPlatformCode(),payVO.getOpenid(),payVO.getBody(),payVO.getOrderNo(),payVO.getNotifyUrl()
+                ,payVO.getAttach(),payVO.getTotal_fee(),payVO.getCreate_ip(),payVO.getTradeType());
     }
 
     @ApiOperation(value = "Payment|保存支付信息")

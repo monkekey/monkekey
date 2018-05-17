@@ -47,7 +47,7 @@
                 <view style="font-size: 20rpx;">{{starVal}}</view>
               </view> 
           </view>
-          <view style="display: flex;z-index: 9;">
+          <view style="display: flex;z-index: 9;padding-left: 40rpx;">
             <view style="margin-top: 80rpx;">
               <image id="comment" mode="aspectFill" src="../../images/zan1.gif" bindtap="commentDialog" style='width:56rpx;height:56rpx' />
             </view>
@@ -60,7 +60,7 @@
           </view> 
           <view class="" style="margin-right: 24rpx;height: 138rpx;">
             <view class="" style='height: 76rpx;margin-top: 36rpx;text-align: right;'>
-               <image src='../../images/yumi_logo1.png' style="width: 110rpx;height: 70rpx;"></image> 
+               <image src='../../images/hpd.png' style="width: 110rpx;height: 70rpx;"></image> 
             </view>
             <view style="font-size: 20rpx; text-align: center;color: #4C5A68;">{{innInfo.innName}}</view>
           </view>
@@ -111,7 +111,7 @@
     </view>
 
   <view class="msg" style='height:{{height+64}}rpx;' >
-    <scroll-view scroll-y="true" scroll-top="100000000000000000" class="msg-content" style="height:540rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;" animation="{{animation}}" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y="true" scroll-top="100000000000000000" class="msg-content" style="height:100%;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;" animation="{{animation}}" scroll-top="{{scrollTop}}">
       <view class="flex-column" style="padding:8px">
         <view wx:for="{{messageArray}}"  wx:key="item.sendtime" wx:for-index="idx" wx:for-item="itemName" style="padding-top:4rpx">
           <view class="clearfix flex-row" wx:if="{{itemName.type == 'self'}}">

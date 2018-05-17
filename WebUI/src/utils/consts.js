@@ -1,12 +1,12 @@
 // 基础地址
-// const BASE_URL = 'http://127.0.0.1:9080/'
-// const WEBSOCKET_URL = 'ws://127.0.0.1:5544/ws'
+const BASE_URL = 'http://127.0.0.1:9080/'
+const WEBSOCKET_URL = 'ws://127.0.0.1:5544/ws'
 
-const BASE_URL = 'https://restapi.iyumi.com/'
-const WEBSOCKET_URL = 'wss://restapi.iyumi.com/ws'
+// const BASE_URL = 'https://restapi.iyumi.com/'
+// const WEBSOCKET_URL = 'wss://restapi.iyumi.com/ws'
 
 // 接口地址
-const API_URL = BASE_URL + 'yumi_bee/'
+const API_URL = BASE_URL + 'hpd/'
 
 // 静态资源
 const STATIC_URL= BASE_URL + '/resource/'
